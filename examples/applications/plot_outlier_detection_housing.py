@@ -47,12 +47,48 @@ def load_ames_housing():
     X = df.data
     y = df.target
 
-    X = X[features]
     return X, y
 
-
 X, y = load_ames_housing()
+import matplotlib.pylab as plt
 
+
+num_cat = X.columns[X.dtypes == 'float64']
+possible_cat = ['LotFrontage', # maybe
+                'LotArea', # maybe
+                'YearBuilt', 'MasVnrArea', 'BsmtFinSF1',
+       'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
+       'GrLivArea', 'GarageYrBlt', 'GarageArea', 'WoodDeckSF',
+       'OpenPorchSF', 'EnclosedPorch', 'ScreenPorch']
+
+max_i = len(possible_cat)
+for x in range(max_i):
+    for y in range(x, max_i):
+        plt.figure()
+        plt.plot(X[possible_cat[x]], X[possible_cat[y]], '.')
+        plt.xlabel(possible_cat[x])
+        plt.ylabel(possible_cat[y])
+# combinations to consider:
+'TotalBsmtSF', 'LotFrontage'
+'1stFlrSF', 'LotFrontage'
+'GrLivArea', 'LotFrontage'
+'GarageYrBlt', 'LotFrontage'
+'BsmtFinSF1', 'LotArea'
+'YearBuilt', 'LotArea'
+'BsmtUnfSF', 'LotArea'
+'TotalBsmtSF', , 'LotArea'
+'1stFlrSF', , 'LotArea'
+'GrLivArea', 'LotArea'
+'GarageYrBlt','LotArea'
+'GrLivArea', 'GarageYrBlt'
+'GarageYrBlt', 'GrLivArea'
+'GarageYrBlt', 'TotalBsmtSF'
+'GarageYrBlt', '1stFlrSF'
+
+
+
+plt.show()
+import pdb; pdb.set_trace()
 """
 First example
 -------------
