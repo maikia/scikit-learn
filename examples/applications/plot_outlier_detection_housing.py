@@ -7,7 +7,7 @@ This example illustrates the need for robust covariance estimation
 on a real data set. It is useful both for outlier detection and for
 a better understanding of the data structure.
 
-We selected two sets of two variables from the Boston housing data set
+We selected two sets of two variables from the Ames housing data set
 as an illustration of what kind of analysis can be done with several
 outlier detection tools. For the purpose of visualization, we are working
 with two-dimensional examples, but one should be aware that things are
@@ -22,6 +22,23 @@ estimation of the data structure, but yet accurate to some extent.
 The One-Class SVM does not assume any parametric form of the data distribution
 and can therefore model the complex shape of the data much better.
 
+"""
+
+
+print(__doc__)
+
+# Authors: Virgile Fritsch <virgile.fritsch@inria.fr>
+#          Maria Telenczuk <https://github.com/maikia>
+# License: BSD 3 clause
+
+
+###############################################################################
+# Download the dataset
+###############################################################################
+#
+# use Ames dataset
+
+"""
 First example
 -------------
 The first example illustrates how robust covariance estimation can help
@@ -33,23 +50,7 @@ clusters (Support Vector Machines, Gaussian Mixture Models, univariate
 outlier detection, ...). But had it been a high-dimensional example, none
 of these could be applied that easily.
 
-Second example
---------------
-The second example shows the ability of the Minimum Covariance Determinant
-robust estimator of covariance to concentrate on the main mode of the data
-distribution: the location seems to be well estimated, although the covariance
-is hard to estimate due to the banana-shaped distribution. Anyway, we can
-get rid of some outlying observations.
-The One-Class SVM is able to capture the real data structure, but the
-difficulty is to adjust its kernel bandwidth parameter so as to obtain
-a good compromise between the shape of the data scatter matrix and the
-risk of over-fitting the data.
-
 """
-print(__doc__)
-
-# Author: Virgile Fritsch <virgile.fritsch@inria.fr>
-# License: BSD 3 clause
 
 import numpy as np
 from sklearn.covariance import EllipticEnvelope
@@ -115,6 +116,21 @@ plt.xlabel("pupil-teacher ratio by town")
 
 legend2_values_list = list(legend2.values())
 legend2_keys_list = list(legend2.keys())
+
+"""
+Second example
+--------------
+The second example shows the ability of the Minimum Covariance Determinant
+robust estimator of covariance to concentrate on the main mode of the data
+distribution: the location seems to be well estimated, although the covariance
+is hard to estimate due to the banana-shaped distribution. Anyway, we can
+get rid of some outlying observations.
+The One-Class SVM is able to capture the real data structure, but the
+difficulty is to adjust its kernel bandwidth parameter so as to obtain
+a good compromise between the shape of the data scatter matrix and the
+risk of over-fitting the data.
+
+"""
 
 plt.figure(2)  # "banana" shape
 plt.title("Outlier detection on a real data set (boston housing)")
